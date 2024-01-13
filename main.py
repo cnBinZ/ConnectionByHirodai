@@ -33,7 +33,6 @@ emailID = "-u.ac.jp"
 pwd = "PASSWORDS"
 #Sets the time of execution
 schedule.every().day.at("04:10").do(connection_hirodai,driver_path, emailID, pwd)
-schedule.every().day.at("14:10").do(connection_hirodai,driver_path, emailID, pwd)
 while True:
     schedule.run_pending()
-    time.sleep(30)
+    time.sleep(1)
