@@ -11,7 +11,10 @@ def connection_hirodai(driver_path,emailID,pwd):
     #如果网页不要求登录
     if driver.find_element(By.CLASS_NAME, "table") is not None:
         driver.find_element(By.CLASS_NAME, "table").click()
-        driver.find_element(By.ID, "login").submit()
+        time.sleep(5)
+        driver.find_element(By.ID,"login").submit()
+        #driver.find_elements(By.CLASS_NAME, "btn form-element form-button").click()
+        
     #需要登录的情况
     else:
         driver.find_element(By.ID, "i0116").send_keys(emailID)
@@ -23,8 +26,8 @@ def connection_hirodai(driver_path,emailID,pwd):
         driver.find_element(By.ID, "idSIButton9").click()
         time.sleep(5)
         driver.find_element(By.ID, "login").submit()
-    time.sleep(10)
     print("connection!")
+    time.sleep(10)
     driver.quit()
 
 driver_path = "msedgedriver" 
@@ -32,6 +35,7 @@ driver_path = "msedgedriver"
 emailID = "-u.ac.jp"
 pwd = "PASSWORDS"
 #Sets the time of execution
+#connection_hirodai(driver_path, emailID, pwd)
 schedule.every().day.at("04:10").do(connection_hirodai,driver_path, emailID, pwd)
 while True:
     schedule.run_pending()
